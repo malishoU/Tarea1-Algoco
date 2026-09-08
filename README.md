@@ -6,6 +6,16 @@ Este repositorio contiene el código fuente, los datos experimentales, los resul
 
 La tarea estudia experimentalmente algoritmos de ordenamiento de arreglos y de multiplicación de matrices, comparando sus tiempos de ejecución y uso de memoria.
 
+## Nota sobre los archivos de datos
+
+Debido a que en aula hay un máximo de 50 MB  esta versión de la entrega contiene una selección reducida de los archivos de entrada y salida generados durante los experimentos.
+
+Se conservaron muestras representativas de menor tamaño, junto con todos los códigos fuente, algoritmos, scripts de generación y medición, Makefiles, resultados de mediciones, gráficos e informe. Los archivos de datos de mayor tamaño fueron omitidos únicamente para cumplir con la restricción de peso de la plataforma.
+
+La versión completa de la tarea, incluyendo los archivos de entrada y salida de mayor tamaño, se encuentra disponible en el repositorio:
+
+https://github.com/malishoU/Tarea1-Algoco
+
 ## Estructura del repositorio
 
 ```text
