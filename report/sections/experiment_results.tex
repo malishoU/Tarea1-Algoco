@@ -1,0 +1,150 @@
+\subsection{Ordenamiento de arreglos}
+
+Los resultados presentados a continuación corresponden a una selección de los
+casos más representativos del conjunto completo de experimentos. Las mediciones
+para todas las combinaciones de tamaños, tipos de entrada, dominios y muestras
+se encuentran registradas en los archivos CSV generados automáticamente, mientras
+que las figuras seleccionadas permiten destacar las principales diferencias
+observadas entre los algoritmos.
+
+Podemos observar diferencias importantes en los resultados experimentales de los
+algoritmos de ordenamiento, especialmente a medida que aumenta el tamaño de los
+arreglos. Para $n=10$ todos los algoritmos presentan tiempos muy pequeños, por lo
+que las diferencias entre ellos no son significativas. Sin embargo, al aumentar
+el tamaño de entrada estas diferencias se hacen cada vez más evidentes.
+
+En la Figura~\ref{fig:sorting} se presentan los tiempos obtenidos para arreglos
+aleatorios del dominio D1. En este conjunto de datos, \texttt{std::sort} \cite{cppreference_sort} 
+presentó el mejor comportamiento experimental para los tamaños mayores. Para $n=10^7$
+obtuvo un tiempo promedio de aproximadamente $0.182$ s, mientras que MergeSort \cite{geeksforgeeks_mergesort,geeksforgeeks_quicksort}
+alcanzó $0.656$ s y PatienceSort \cite{rosettacode_patiencesort} $1.653$ s. QuickSort, en cambio, superó el límite
+de 30 segundos en las tres muestras aleatorias del dominio D1 para este tamaño.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]
+    {../code/sorting/data/plots/tiempo_aleatorio_D1.png}
+    \caption{Tiempo de ejecución de los algoritmos de ordenamiento para arreglos
+    aleatorios del dominio D1.}
+    \label{fig:sorting}
+\end{figure}
+
+La Tabla~\ref{tab:sorting} resume algunos de los tiempos promedio obtenidos para
+los arreglos aleatorios D1. Se observa que las diferencias entre los algoritmos
+se vuelven más notorias al aumentar el tamaño de entrada.
+
+\begin{table}[ht]
+    \centering
+    \small
+    \begin{tabular}{c|cccc}
+        \hline
+        $n$ & MergeSort & QuickSort & PatienceSort & \texttt{std::sort} \\
+        \hline
+        $10^3$ & 0.000069 & 0.000045 & 0.000167 & 0.000019 \\
+        $10^5$ & 0.005742 & 0.226181 & 0.017213 & 0.001707 \\
+        $10^7$ & 0.655822 & TIMEOUT & 1.653383 & 0.181568 \\
+        \hline
+    \end{tabular}
+    \caption{Tiempo promedio de ejecución en segundos para arreglos aleatorios
+    del dominio D1.}
+    \label{tab:sorting}
+\end{table}
+
+Los \textit{timeouts} de QuickSort ocurrieron para entradas de tamaño $10^7$ del
+dominio D1, tanto aleatorias como ascendentes y descendentes. Además, PatienceSort
+superó el límite de tiempo para los arreglos ascendentes de tamaño $10^7$ del
+dominio D7. Estos resultados muestran que, además del tamaño de entrada, la
+distribución y el orden inicial de los datos pueden afectar de forma importante
+el comportamiento práctico de una implementación.
+
+A continuación, se discutiran algunos fenomenos ocurridos en el análisis de tiempo.
+La tendencia global es bastante clara: un aumento de n implica un aumento de su tiempo de ejecución,
+mas bien, este tiempo no se comporta de forma lineal. El algoritmo que sale de esta regla con creces fue el \textit{QuickSort},
+este se comportó de manera eficáz incluso con arreglos de $10^7$ elementos, sin embargo, para D1
+todas las ejecuciones de ese tamaño superarn el límite de tiempo. Esto lo podemos explicar mediante
+la forma en la que se realizaron las particiones, pues aunque se edito el codigo fuente para
+lograr que se use de pivote el elemento central, la particion de Lomuto agrupa los elementos menores
+e iguales al pivote en el mismo lado. Cuando existen muchos valores repetidos eso produce 
+un desbalanceo y un aumento a las comparaciones y llamadas recursivas, convirtiendo
+su tiempo en el peor caso n cuadrado. Por lo tanto, a pesar de ser un buen algoritmo, 
+en la práctica podemos apreciar que la eficiencia no solo depende de su eleccion de pivote,
+sino tambien de la distribucion de valores y la particion usada.
+
+\subsection{Multiplicación de matrices}
+
+En la multiplicación de matrices se observó una diferencia considerable entre el
+algoritmo Naive \cite{geeksforgeeks_naive,geeksforgeeks_strassen}  y la implementación 
+de Strassen, una diferencia que se mantuvo bastante
+uniforme con los distintos tamaños de arreglos. La Figura~\ref{fig:matrix} nos puede mostrar
+los distintos resultados para matrices diagonales del dominio D0. Para $n=16$, Naive obtuvo
+un tiempo promedio de aproximadamente $4.27\times10^{-6}$ s, mientras que Strassen
+alcanzó $1.13\times10^{-3}$ s. Para $n=64$ los promedios fueron aproximadamente
+$1.09\times10^{-4}$ s y $4.75\times10^{-2}$ s, respectivamente. Finalmente, para un tamaño
+$n=256$, Naive obtuvo aproximadamente $6.58\times10^{-3}$ s, mientras que Strassen
+alcanzó $2.280$ s.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.75\textwidth]
+    {../code/matrix_multiplication/data/plots/tiempo_matriz_diagonal_D0.png}
+    \caption{Tiempo de ejecución de Naive y Strassen para matrices diagonales
+    del dominio D0.}
+    \label{fig:matrix}
+\end{figure}
+
+La Tabla~\ref{tab:matrix} resume estos resultados y permite observar la diferencia
+de tiempo entre ambos algoritmos a medida que aumenta el tamaño de las matrices.
+
+\begin{table}[ht]
+    \centering
+    \small
+    \begin{tabular}{c|cc}
+        \hline
+        $n$ & Naive (s) & Strassen (s) \\
+        \hline
+        $16$   & 0.000003918 & 0.001047277 \\
+        $64$   & 0.000126967 & 0.046354867 \\
+        $256$  & 0.006411493 & 2.277426667 \\
+        $1024$ & 0.880075667 & TIMEOUT \\
+        \hline
+    \end{tabular}
+    \caption{Tiempo promedio de ejecución para matrices diagonales del dominio D0.}
+    \label{tab:matrix}
+\end{table}
+
+A pesar de que Strassen posee una mejor complejidad asintótica que el algoritmo
+Naive clásico, esta ventaja no se observó experimentalmente en los tamaños
+evaluados. La implementación de Strassen incluye trabajo adicional debido a las
+operaciones auxiliares y a la recursión, lo que genera un costo considerable para
+estas entradas. Para $n=1024$, todas las ejecuciones de Strassen, considerando los
+distintos tipos de matrices y dominios evaluados, superaron el límite establecido
+de 60 segundos. En el caso particular de las matrices diagonales D0, Naive completó
+las pruebas con un tiempo promedio de aproximadamente $0.855$ s.
+
+\subsection{Análisis de memoria}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.75\textwidth]
+    {../code/matrix_multiplication/data/plots/memoria_matriz_dispersa_D10.png}
+    \caption{Uso máximo de memoria para matrices dispersas del dominio D10.}
+    \label{fig:memory}
+\end{figure}
+
+
+En memoria tambien podemos observar algunas diferencias entre los algoritmos.
+Para los arreglos de $10^7$ elementos, MergeSort utilizó más memoria
+que \texttt{std::sort}, mientras que PatienceSort dependió bastante
+del tipo de entrada. Esto se relaciona directamente con los arreglos auxiliares
+de MergeSort y con la cantidad y el tamaño de las pilas que construye
+PatienceSort en cada una de las iteraciones. Además, las funciones de ordenamiento 
+retornan el arreglo por valor, agregando una copia al consumo medido.
+
+En matrices dispersas D10 de tamaño 256, Naive utilizó en promedio
+$4224$ KB y Strassen $7509.33$ KB. La diferencia es coherente con
+las copias y matrices auxiliares de Strassen. De todas formas,
+estas mediciones corresponden a la memoria máxima del proceso
+completo, incluyendo las entradas, y no solamente a la memoria
+auxiliar de cada algoritmo. Para los casos con \texttt{TIMEOUT}
+no se obtuvo una medición de memoria, por lo que no podemos
+compararlos directamente.
