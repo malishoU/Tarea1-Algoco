@@ -67,6 +67,11 @@ def generar_y_guardar(n, t, d, m, carpeta="../data/matrix_input"):
     print(f"Archivos guardados: {archivo1}, {archivo2}")
 
 def generar_todos():
+    # Semilla fija para repetir los mismos datos al ejecutar el script.
+    np.random.seed(20260911)
+    random.seed(20260911)
+    os.makedirs("../data/matrix_input", exist_ok=True)
+
     Ns = [2**4, 2**6, 2**8, 2**10]
     Ts = ["dispersa", "diagonal", "densa"]
     Ds = ["D0", "D10"]

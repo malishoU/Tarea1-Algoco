@@ -13,6 +13,12 @@ densas, diagonales y dispersas, los dominios D0 y D10 y tres muestras por config
 En ambos experimentos se registró el tiempo de ejecución y el uso máximo de memoria de 
 cada algoritmo.
 
+Se agregó una semilla fija (20260911) a los generadores para poder repetir
+los mismos datos al ejecutar los scripts completos en el mismo orden.
+En matrices se fijó la semilla de NumPy y de \texttt{random}.
+Las mediciones actuales son anteriores a este cambio; falta repetir las
+pruebas y actualizar los resultados. Los tiempos pueden variar entre ejecuciones.
+
 Durante las mediciones de matrices se detectaron dos duraciones
 negativas y una duración positiva anómala. Se sustituyó el reloj
 utilizado por \texttt{std::chrono::steady\_clock}, se recompiló

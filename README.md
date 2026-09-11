@@ -8,11 +8,9 @@ La tarea estudia experimentalmente algoritmos de ordenamiento de arreglos y de m
 
 ## Nota sobre los archivos de datos
 
-Debido a que en aula hay un máximo de 50 MB  esta versión de la entrega contiene una selección reducida de los archivos de entrada y salida generados durante los experimentos.
+Según la aclaración del ayudante, el ZIP final debe entregarse sin los archivos de input y output. Los scripts generan los datos de prueba y crean las carpetas necesarias. En la carpeta de trabajo se pueden conservar los datos y resultados.
 
-Se conservaron muestras representativas de menor tamaño, junto con todos los códigos fuente, algoritmos, scripts de generación y medición, Makefiles, resultados de mediciones, gráficos e informe. Los archivos de datos de mayor tamaño fueron omitidos únicamente para cumplir con la restricción de peso de la plataforma.
-
-La versión completa de la tarea, incluyendo los archivos de entrada y salida de mayor tamaño, se encuentra disponible en el repositorio:
+El repositorio de respaldo se encuentra en:
 
 https://github.com/malishoU/Tarea1-Algoco
 

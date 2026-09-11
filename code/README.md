@@ -1,5 +1,11 @@
 # Documentación
 
+## Generación de datos
+
+Los generadores usan la semilla fija 20260911 para repetir los mismos datos al ejecutar el script completo, manteniendo el mismo orden de generación y las mismas versiones de Python y NumPy. Las carpetas de entrada se crean automáticamente. Se ejecutan como antes, mediante `make generate` o desde la carpeta `scripts`.
+
+Las mediciones actuales son anteriores a este cambio y deben actualizarse al repetir las pruebas.
+
 ## Entrega
 
 La entrega se realiza vía **aula.usm.cl** en formato `.zip`.

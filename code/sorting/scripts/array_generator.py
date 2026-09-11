@@ -29,6 +29,10 @@ def guardar_arreglo(nombre_archivo, arreglo):
         f.write(" ".join(map(str, arreglo)))
 
 def generar_archivos():
+    # Semilla fija para repetir los mismos datos al ejecutar el script.
+    np.random.seed(20260911)
+    os.makedirs("../data/array_input", exist_ok=True)
+
     N = [10**1, 10**3, 10**5, 10**7] 
     T = ["ascendente", "descendente", "aleatorio"]
     D = ["D1", "D7"]
