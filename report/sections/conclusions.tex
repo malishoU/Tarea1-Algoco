@@ -1,42 +1,21 @@
-Los resultados experimentales muestran que una mejor complejidad no 
-necesariamente indica un menor tiempo de ejecución. En ordenamiento, \texttt{std::sort}
-presentó en general los menores tiempos, mientras que QuickSort
-y PatienceSort superaron el límite de 30 segundos en algunas
-entradas de tamaño $10^7$. Esto muestra que no basta con considerar
-la cantidad de elementos, pues también influyen su distribución
-y el orden inicial. En QuickSort, elegir un pivote central no evitó
-las particiones desbalanceadas cuando había muchos valores repetidos.
-Por su parte, PatienceSort mostró dificultades con las entradas
-ascendentes del dominio D7, donde la construcción de muchas pilas
-aumenta los costos de la implementación.
+En esta corrida, \texttt{std::sort} tuvo las menores medias de tiempo para
+las seis configuraciones de arreglos de $10^7$ elementos. MergeSort mantuvo
+un comportamiento más regular que QuickSort, mientras que QuickSort alcanzó
+el límite en las nueve entradas grandes de D1. PatienceSort mostró una fuerte
+dependencia del tipo de entrada: en ascendente D7 hubo dos timeouts y una
+muestra terminada con un consumo de memoria mucho mayor que los otros algoritmos.
 
-En multiplicacion de matrices, Naive se desenvolviò considerablemente más
-rápido que Strassen para todos los casos experimentados. Para
-$n=1024$, Naive terminó las pruebas en aproximadamente $0.872$ s
-en promedio, mientras que Strassen superó el límite de 60 segundos
-en todas sus ejecuciones. Aunque Strassen reduce la cantidad de
-multiplicaciones recursivas, las copias de matrices, las operaciones
-auxiliares y la recursión hasta matrices de tamaño 1 generan un
-costo que resultó importante en estas pruebas. Por lo tanto,
-estos resultados no permiten concluir que Naive siempre será
-mejor, sino que fue más conveniente con las implementaciones
-y tamaños utilizados.
+En matrices, Naive fue más rápido en los casos comparables y completó todas
+las pruebas. Strassen alcanzó el límite en las 18 pruebas de tamaño 1024.
+Su mejor complejidad asintótica no compensó los costos de esta implementación
+en los tamaños evaluados. No se concluye que Naive siempre sea superior,
+sino que fue más conveniente en este experimento.
 
-En memoria también se observaron diferencias: Strassen presentó
-un mayor consumo que Naive en los tamaños comparables, mientras
-que en ordenamiento el uso de arreglos auxiliares y pilas influyó
-en los resultados. Sin embargo, se midió la memoria máxima del
-proceso completo, por lo que no todo ese consumo corresponde
-exclusivamente al algoritmo. Además, los casos con
-\texttt{TIMEOUT} permiten reconocer una limitación práctica,
-pero no conocer su tiempo final ni comparar su memoria.
+La complejidad teórica ayuda a interpretar el crecimiento, pero también importan
+los datos y la forma de implementar las operaciones. Las explicaciones sobre
+particiones, pilas y copias se apoyan en el código y son consistentes con las
+mediciones; no sustituyen una medición aislada de cada causa. Como continuación,
+se podría comparar una partición de QuickSort que agrupe los iguales y una
+versión de Strassen con Naive como caso base. Estas variantes no se probaron aquí.
 
-En conjunto, pudimos observar que la complejidad teórica ayuda
-a entender el crecimiento esperado, pero no describe por sí sola
-todo lo que ocurre al ejecutar un programa. La elección de un
-algoritmo también debe considerar cómo está implementado, qué
-entradas recibe y cuánta memoria necesita. Como continuación,
-sería interesante evaluar una partición de QuickSort que agrupe
-los valores iguales y una versión de Strassen que utilice Naive
-para las matrices pequeñas, para comprobar cuánto cambian los
-resultados al reducir estos costos.
+\clearpage

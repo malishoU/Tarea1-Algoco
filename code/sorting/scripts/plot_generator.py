@@ -28,7 +28,7 @@ nombres = {
 
 tiempos = defaultdict(list)
 memorias = defaultdict(list)
-timeouts = set()
+timeouts = defaultdict(int)
 
 with open(CSV_PATH, newline="", encoding="utf-8") as archivo:
     lector = csv.DictReader(archivo)
@@ -50,13 +50,24 @@ with open(CSV_PATH, newline="", encoding="utf-8") as archivo:
             memorias[clave].append(memoria)
 
         elif estado == "TIMEOUT":
-            timeouts.add(clave)
+            timeouts[clave] += 1
 
 
 tipos = ["aleatorio", "ascendente", "descendente"]
 dominios = ["D1", "D7"]
 algoritmos = ["merge", "quick", "patience", "std"]
 
+
+
+def nota_grafico(tipo, dominio):
+    detalle = []
+    for (t, d, algoritmo, n), cantidad in sorted(timeouts.items()):
+        if t == tipo and d == dominio:
+            detalle.append(f"{nombres[algoritmo]} n={n}: {cantidad}/3 TIMEOUT")
+    nota = "Media y rango min-max de muestras OK; 3 muestras por caso."
+    if detalle:
+        nota += "\n" + "; ".join(detalle) + ". Sin tiempo final ni memoria para TIMEOUT."
+    plt.figtext(0.5, 0.015, nota, ha="center", fontsize=8)
 
 # --------------------------------------------------
 # Graficos de tiempo
@@ -87,25 +98,32 @@ for tipo in tipos:
                 x = [p[0] for p in puntos]
                 y = [p[1] for p in puntos]
 
-                plt.plot(
+                linea, = plt.plot(
                     x,
                     y,
                     marker="o",
                     label=nombres[algoritmo]
                 )
+                for n, promedio in puntos:
+                    valores = tiempos[(tipo, dominio, algoritmo, n)]
+                    plt.errorbar(n, promedio,
+                                 yerr=[[promedio - min(valores)], [max(valores) - promedio]],
+                                 fmt="none", color=linea.get_color(), capsize=3)
+
 
         plt.xscale("log")
         plt.yscale("log")
 
         plt.xlabel("Tamaño del arreglo (n)")
-        plt.ylabel("Tiempo promedio (segundos)")
+        plt.ylabel("Tiempo promedio de muestras OK (segundos)")
         plt.title(
             f"Tiempo de ejecución - {tipo.capitalize()} - {dominio}"
         )
 
         plt.grid(True, which="both", linestyle="--", alpha=0.4)
         plt.legend()
-        plt.tight_layout()
+        nota_grafico(tipo, dominio)
+        plt.tight_layout(rect=(0, 0.10, 1, 1))
 
         salida = OUTPUT_DIR / f"tiempo_{tipo}_{dominio}.png"
 
@@ -144,24 +162,32 @@ for tipo in tipos:
                 x = [p[0] for p in puntos]
                 y = [p[1] for p in puntos]
 
-                plt.plot(
+                linea, = plt.plot(
                     x,
                     y,
                     marker="o",
                     label=nombres[algoritmo]
                 )
+                for n, promedio in puntos:
+                    valores = memorias[(tipo, dominio, algoritmo, n)]
+                    plt.errorbar(n, promedio,
+                                 yerr=[[promedio - min(valores)], [max(valores) - promedio]],
+                                 fmt="none", color=linea.get_color(), capsize=3)
+
 
         plt.xscale("log")
+        plt.yscale("log")
 
         plt.xlabel("Tamaño del arreglo (n)")
-        plt.ylabel("Memoria máxima promedio (KB)")
+        plt.ylabel("Memoria máxima promedio de muestras OK (KiB)")
         plt.title(
             f"Uso de memoria - {tipo.capitalize()} - {dominio}"
         )
 
         plt.grid(True, which="both", linestyle="--", alpha=0.4)
         plt.legend()
-        plt.tight_layout()
+        nota_grafico(tipo, dominio)
+        plt.tight_layout(rect=(0, 0.10, 1, 1))
 
         salida = OUTPUT_DIR / f"memoria_{tipo}_{dominio}.png"
 

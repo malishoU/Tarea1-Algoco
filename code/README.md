@@ -4,7 +4,9 @@
 
 Los generadores usan la semilla fija 20260911 para repetir los mismos datos al ejecutar el script completo, manteniendo el mismo orden de generación y las mismas versiones de Python y NumPy. Las carpetas de entrada se crean automáticamente. Se ejecutan como antes, mediante `make generate` o desde la carpeta `scripts`.
 
-Las mediciones actuales son anteriores a este cambio y deben actualizarse al repetir las pruebas.
+Las mediciones y gráficos incluidos corresponden a la corrida con esta semilla. Se verificaron 288 registros de ordenamiento y 144 de matrices. Los gráficos muestran medias y rangos de las muestras OK e indican los timeouts.
+
+Se requiere Linux/WSL, g++ con C++17, GNU make, Bash, timeout, Python 3, NumPy y Matplotlib. Para repetir las entradas use Python 3.12.3 y NumPy 1.26.4. El flujo de medición usa los Makefiles mediante `make run`. Cada ejecución de `make run` reemplaza el CSV anterior.
 
 ## Entrega
 

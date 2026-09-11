@@ -1,29 +1,41 @@
-Los experimentos fueron realizados en un computador con procesador Intel Core i5-12500H 
-de 12ª generación, con 16 procesadores lógicos y aproximadamente 7,6 GiB de memoria RAM 
-disponible para el sistema. Las pruebas se ejecutaron utilizando WSL2 sobre Windows, con 
-Ubuntu 24.04.4 LTS y kernel Linux 6.6.87.2. Los programas fueron implementados en C++17 y 
-compilados utilizando g++ 13.3.0 con la opción de optimización \texttt{-O2}. Para la 
-generación de los datasets y de las gráficas se utilizó Python 3.12.3.
+Los experimentos se realizaron en un equipo con procesador Intel Core i5-12500H,
+16 procesadores lógicos y aproximadamente 7,6 GiB de RAM disponibles para Ubuntu
+24.04.4 LTS en WSL2. Se utilizó C++17 con g++ 13.3.0 y optimización
+\texttt{-O2}. Los datos se generaron con Python 3.12.3 y NumPy 1.26.4;
+los gráficos se prepararon con Matplotlib 3.11.1 \cite{matplotlib}.
 
-Para los experimentos de ordenamiento se utilizaron arreglos de tamaños 10, 1000, 100000 y 
-10000000, considerando arreglos aleatorios, ascendentes y descendentes, dos dominios de 
-valores (D1 y D7) y tres muestras por configuración. Para la multiplicación de matrices 
-se utilizaron matrices cuadradas de tamaños 16, 64, 256 y 1024, considerando matrices 
-densas, diagonales y dispersas, los dominios D0 y D10 y tres muestras por configuración. 
-En ambos experimentos se registró el tiempo de ejecución y el uso máximo de memoria de 
-cada algoritmo.
+En ordenamiento se probaron tamaños $10$, $10^3$, $10^5$ y $10^7$, entradas
+ascendentes, descendentes y aleatorias, con valores D1 ($0$ a $9$) y D7
+($0$ a $10^7$, incluidos). En matrices se probaron tamaños $16$, $64$, $256$
+y $1024$, tipos denso, diagonal y disperso, y dominios D0 ($0$ y $1$)
+y D10 ($0$ a $9$). Cada configuración tiene tres muestras: a, b y c.
+Las matrices dispersas se generan intentando llenar un 10\% de las posiciones;
+como pueden repetirse posiciones, la proporción final de no ceros puede ser menor.
+Las matrices se almacenan completas, incluso cuando contienen muchos ceros.
 
-Se agregó una semilla fija (20260911) a los generadores para poder repetir
-los mismos datos al ejecutar los scripts completos en el mismo orden.
-En matrices se fijó la semilla de NumPy y de \texttt{random}.
-Las mediciones actuales son anteriores a este cambio; falta repetir las
-pruebas y actualizar los resultados. Los tiempos pueden variar entre ejecuciones.
+Se fijó la semilla 20260911 al iniciar cada generador; en matrices se fijó
+tanto en NumPy como en \texttt{random}. Los datos se repiten ejecutando los
+scripts completos en el mismo orden y con las mismas versiones. Todos los
+resultados de este informe corresponden a la nueva corrida con estas semillas.
+Se obtuvieron 288 registros de ordenamiento y 144 de matrices, sin casos
+faltantes ni duplicados. Los outputs guardados se contrastaron con un
+ordenamiento de referencia y con el producto matricial calculado con NumPy.
+Esta comprobación valida los archivos guardados; no valida resultados que
+no llegaron a generarse por un timeout.
 
-Durante las mediciones de matrices se detectaron dos duraciones
-negativas y una duración positiva anómala. Se sustituyó el reloj
-utilizado por \texttt{std::chrono::steady\_clock}, se recompiló
-el programa y se repitieron únicamente los tres casos afectados:
-Naive para las matrices densas D10 de tamaño 1024, muestras a y b,
-y Strassen para las matrices densas D0 de tamaño 256, muestra b.
-Las mediciones anteriores de esos casos fueron reemplazadas por
-las nuevas; las demás mediciones se conservaron.
+El tiempo se midió con el reloj \texttt{steady\_clock} de \texttt{std::chrono}, alrededor de la
+llamada al algoritmo, sin incluir lectura ni escritura de archivos. La memoria
+es el máximo residente del proceso indicado por \texttt{getrusage}, en KiB;
+incluye las entradas y no equivale solo a la memoria auxiliar del algoritmo.
+Cada ejecución se inicia en un proceso distinto. Las funciones de ordenamiento
+retornan el vector por valor, por lo que la medición también puede incluir
+el costo de esa interfaz.
+
+Se usaron límites de 30 s para ordenamiento y 60 s para matrices mediante
+\texttt{timeout}. Estos límites se aplican al proceso completo, incluida la
+entrada/salida, y no son tiempos exactos del algoritmo. Hubo 11 timeouts en
+ordenamiento y 18 en matrices. Se presenta la media de las muestras que
+terminaron y el rango mínimo--máximo en los gráficos; los timeouts se señalan
+aparte y nunca se sustituyen por cero. Hay tres entradas por configuración,
+no tres repeticiones de una misma entrada. No se realizaron pruebas de
+significancia ni se midieron por separado comparaciones, copias o asignaciones.

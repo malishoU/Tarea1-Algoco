@@ -49,6 +49,8 @@ Para compilar el informe:
 ```bash
 cd report
 pdflatex report.tex
+biber report
+pdflatex report.tex
 pdflatex report.tex
 ```
 
@@ -134,6 +136,8 @@ Una vez generados los resultados y gráficos, el informe puede compilarse median
 
 ```bash
 cd report
+pdflatex report.tex
+biber report
 pdflatex report.tex
 pdflatex report.tex
 ```

@@ -43,6 +43,49 @@
       \verb https://en.cppreference.com/w/cpp/algorithm/sort
       \endverb
     \endentry
+    \entry{material_tarea1}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=354b5166bbd2e51f4f7ffe7122ae3e50}{%
+           family={{Equipo de Algoritmos y Complejidad}},
+           familyi={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{354b5166bbd2e51f4f7ffe7122ae3e50}
+      \strng{fullhash}{354b5166bbd2e51f4f7ffe7122ae3e50}
+      \strng{bibnamehash}{354b5166bbd2e51f4f7ffe7122ae3e50}
+      \strng{authorbibnamehash}{354b5166bbd2e51f4f7ffe7122ae3e50}
+      \strng{authornamehash}{354b5166bbd2e51f4f7ffe7122ae3e50}
+      \strng{authorfullhash}{354b5166bbd2e51f4f7ffe7122ae3e50}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Asignatura INF-221, Universidad Técnica Federico Santa María. Material proporcionado mediante el aula virtual}
+      \field{title}{{Tarea 1: enunciado y material de apoyo}}
+      \field{year}{2026}
+    \endentry
+    \entry{algorithms_erickson}{book}{}
+      \name{author}{1}{}{%
+        {{hash=5bc705fbb2f250ed1b9e6e0878e5c89f}{%
+           family={Erickson},
+           familyi={E\bibinitperiod},
+           given={Jeff},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{5bc705fbb2f250ed1b9e6e0878e5c89f}
+      \strng{fullhash}{5bc705fbb2f250ed1b9e6e0878e5c89f}
+      \strng{bibnamehash}{5bc705fbb2f250ed1b9e6e0878e5c89f}
+      \strng{authorbibnamehash}{5bc705fbb2f250ed1b9e6e0878e5c89f}
+      \strng{authornamehash}{5bc705fbb2f250ed1b9e6e0878e5c89f}
+      \strng{authorfullhash}{5bc705fbb2f250ed1b9e6e0878e5c89f}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-1-792-64483-2}
+      \field{month}{06}
+      \field{title}{Algorithms}
+      \field{year}{2019}
+    \endentry
     \entry{geeksforgeeks_mergesort}{online}{}
       \name{author}{1}{}{%
         {{hash=f1e069787ece74531d112559945c6871}{%
@@ -141,6 +184,30 @@
       \endverb
       \verb{url}
       \verb https://www.geeksforgeeks.org/strassens-matrix-multiplication-algorithm-implementation/
+      \endverb
+    \endentry
+    \entry{matplotlib}{online}{}
+      \name{author}{1}{}{%
+        {{hash=1587383cf8c21507d06fb51ef7ddda0c}{%
+           family={{Matplotlib}},
+           familyi={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{1587383cf8c21507d06fb51ef7ddda0c}
+      \strng{fullhash}{1587383cf8c21507d06fb51ef7ddda0c}
+      \strng{bibnamehash}{1587383cf8c21507d06fb51ef7ddda0c}
+      \strng{authorbibnamehash}{1587383cf8c21507d06fb51ef7ddda0c}
+      \strng{authornamehash}{1587383cf8c21507d06fb51ef7ddda0c}
+      \strng{authorfullhash}{1587383cf8c21507d06fb51ef7ddda0c}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{Matplotlib}}
+      \verb{urlraw}
+      \verb https://matplotlib.org/
+      \endverb
+      \verb{url}
+      \verb https://matplotlib.org/
       \endverb
     \endentry
     \entry{rosettacode_patiencesort}{online}{}
