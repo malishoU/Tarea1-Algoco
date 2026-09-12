@@ -8,7 +8,7 @@ La tarea estudia experimentalmente algoritmos de ordenamiento de arreglos y de m
 
 ## Nota sobre los archivos de datos
 
-Según la aclaración del ayudante, el ZIP final debe entregarse sin los archivos de input y output. Los scripts generan los datos de prueba y crean las carpetas necesarias. En la carpeta de trabajo se pueden conservar los datos y resultados.
+Aqui se subieron todos los imputs y outputs, mientras que en aula se sacaron. Los scripts generan los datos de prueba y crean las carpetas necesarias. En la carpeta de trabajo se pueden conservar los datos y resultados.
 
 El repositorio de respaldo se encuentra en:
 
