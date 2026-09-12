@@ -44,7 +44,7 @@ Mas adelante se presentan las instrucciones específicas para compilar y ejecuta
 
 Contiene el mini-informe desarrollado en LaTeX y el archivo `report.pdf`.
 
-Para compilar el informe:
+Para compilar el informe desde la raíz del proyecto:
 
 ```bash
 cd report
@@ -61,26 +61,19 @@ El documento generado corresponde a `report/report.pdf`.
 Para ejecutar los experimentos y generar los gráficos se requiere:
 
 - g++ con soporte para C++17
-- make
+- GNU make, Bash y timeout (Linux/WSL)
 - Python 3
 - NumPy
 - Matplotlib
-- LaTeX para compilar el informe
+- LaTeX y Biber para compilar el informe
 
 Para compilar el informe se requiere una instalación de LaTeX con los paquetes utilizados por la plantilla.
 
 ## Ejecución
 
-### Requisitos
+Cada bloque de comandos parte desde la raíz del proyecto (la carpeta Tarea1). Si acaba de ejecutar otro bloque, vuelva a esa carpeta antes de comenzar el siguiente.
 
-Para ejecutar el proyecto se requiere:
-
-- g++ con soporte para C++17
-- make
-- Python 3
-- NumPy
-- Matplotlib
-- Una distribución de LaTeX para compilar el informe
+Ejecute `make generate` antes de `make run` para disponer de todas las entradas. `make run` reemplaza las mediciones anteriores.
 
 ### Ordenamiento
 

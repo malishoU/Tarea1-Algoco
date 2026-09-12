@@ -1,34 +1,29 @@
-# AlgoReportTemplate
+# Informe de Tarea 1
 
-## Descripción
+Esta carpeta contiene el informe de los experimentos de ordenamiento y multiplicación de matrices, elaborado con la plantilla de la asignatura.
 
-Este repositorio contiene una plantilla en **LaTeX** diseñada específicamente para la creación de mini-informes en la asignatura **Algoritmos y Complejidad** del Departamento de Informática de la **Universidad Técnica Federico Santa María (UTFSM)**. La plantilla está estructurada para facilitar la redacción de tareas, reportes de laboratorio y proyectos relacionados con el análisis de algoritmos.
+- `author.tex` contiene los datos del autor.
+- `sections/introduccion.tex`, `sections/experiment_intro.tex`, `sections/experiment_results.tex` y `sections/conclusions.tex` contienen el cuerpo del informe.
+- `references.bib` contiene la bibliografía.
+- `report.tex` y `preamble.tex` corresponden a la estructura y configuración de la plantilla.
+- `report.pdf` es el informe compilado.
 
-### Modificación de la plantilla
+Los gráficos utilizados se encuentran en las carpetas `data/plots` de ambos programas, dentro de `code`.
 
-- Escriba sus datos en `author.tex`.
-- `preamble.tex` y `report.tex` NO debe ser modificados.
-- `references.bib` contiene las referencias bibliográficas. Agregue las suyas.
-- `report.pdf` es el archivo de salida generado por `pdflatex`.
-- Elimine las figuras existentes y utilice las que generará en su informe.
+## Compilación
+
+Desde la raiz del proyecto (con LaTeX y Biber instalados):
 
 ```bash
-.
-├── author.tex
-├── preamble.tex
-├── README.md
-├── references.bib
-├── report.pdf
-├── report.tex
-└── sections
-    ├── conclusions.tex
-    ├── experiment_intro.tex
-    └── experiment_results.tex
-
-2 directories, 9 files
-
+cd report
+pdflatex report.tex
+biber report
+pdflatex report.tex
+pdflatex report.tex
 ```
 
-### Entrega
+El resultado queda en `report/report.pdf`. Para compilar el informe con los graficos incluidos no es necesario repetir los experimentos, solo compilar los graficos.
 
-La entrega se realiza vía **aula.usm.cl** en formato `.zip`.
+## Entrega
+
+La entrega se realiza via **aula.usm.cl** en formato `.zip`, incluyendo el informe y el proyecto.
